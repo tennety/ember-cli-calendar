@@ -1,15 +1,10 @@
 import Ember from "ember";
+/* global moment */
 
 export default Ember.Controller.extend({
-  weekdays: function() {
-    return ([
-      {name: "Sunday"},
-      {name: "Monday"},
-      {name: "Tuesday"},
-      {name: "Wednesday"},
-      {name: "Thursday"},
-      {name: "Friday"},
-      {name: "Saturday"}
-    ]);
-  }.property()
+  startDate: null,
+
+  _setup: function() {
+    this.set('startDate', moment().startOf('week'));
+  }.on('init')
 });

@@ -15,10 +15,7 @@ module('Acceptance: Calendar', {
 test('visiting /calendar', function() {
   visit('/calendar');
   andThen(function() {
-    var dayNames = find('.weekday .name');
+    var dayNames = find('.ember-calendar-head-date .name');
     equal(dayNames.length, 7);
-    ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"].forEach(function(name, idx) {
-      equal(dayNames[idx].innerHTML, name);
-    });
   });
 });

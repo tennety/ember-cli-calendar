@@ -1,13 +1,1 @@
-<div class="ember-calendar-container">
-  <div class="ember-calendar-head">
-  </div>
-  <div class="ember-calendar-body">
-    <div class="calendar">
-    {{#each day in weekdays}}
-      <div class="weekday">
-        <h4 class="name">{{day.name}}</h4>
-      </div>
-    {{/each}}
-    </div>
-  </div>
-<div>
+{{calendar-container startDate=startDate}}
