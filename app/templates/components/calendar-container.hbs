@@ -2,9 +2,9 @@
   <button class="ember-calendar-head-previous" {{action "previous"}}>&laquo;</button>
   <div class="ember-calendar-head-dates">
     {{#each day in weekdays}}
-    <div class="ember-calendar-head-date ember-calendar-head-week-date">
-      <span class="name">{{format-date day 'ddd M/D'}}</span>
-    </div>
+      <div class="ember-calendar-head-date ember-calendar-head-week-date">
+        <span class="name">{{format-date day 'ddd M/D'}}</span>
+      </div>
     {{/each}}
   </div>
   <button class="ember-calendar-head-next" {{action "next"}}>&raquo;</button>
@@ -17,6 +17,8 @@
           <span class="name">{{format-date hour 'h a'}}</span>
         </div>
       {{/each}}
+    </div>
+    <div class="ember-calendar-days">
     </div>
   </div>
 </div>
