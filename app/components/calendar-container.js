@@ -18,7 +18,7 @@ export default Ember.Component.extend({
     var hours = [this.get('startDate').clone()],
         i;
     for (i = 1; i < 24; i++) {
-      hours.pushObject(this.get('startDate').utc().startOf('day').clone().add(i, 'hours'));
+      hours.pushObject(this.get('startDate').clone().utc().startOf('day').clone().add(i, 'hours'));
     }
     return hours;
   }.property(),
@@ -36,7 +36,7 @@ export default Ember.Component.extend({
     });
 
     return days;
-  }.property('interval', 'startDate', 'dates'),
+  }.property('dates', 'events'),
 
   scrollToCurrent: function() {
     var body = this.$('.ember-calendar-body'),
@@ -48,11 +48,11 @@ export default Ember.Component.extend({
 
   actions: {
     previous: function() {
-      this.set('startDate', this.get('startDate').clone().subtract(1, 'week'));
+      this.set('startDate', this.get('startDate').clone().subtract(this.get('interval'), 'days').startOf('day'));
     },
 
     next: function() {
-      this.set('startDate', this.get('startDate').clone().add(1, 'week'));
+      this.set('startDate', this.get('startDate').clone().add(this.get('interval'), 'days').startOf('day'));
     }
   }
 });
