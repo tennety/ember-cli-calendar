@@ -1,13 +1,20 @@
 <div class="ember-calendar-head">
-  <button class="ember-calendar-head-previous" {{action "previous"}}>&laquo;</button>
+  <div class="ember-calendar-head-controls">
+    <div class="ember-calendar-head-controls-movement">
+      <button class="ember-calendar-head-previous" {{action "previous"}}>&laquo;</button>
+      <button class="ember-calendar-head-today" {{action "today"}}>Today</button>
+      <button class="ember-calendar-head-next" {{action "next"}}>&raquo;</button>
+    </div>
+    <div class="ember-calendar-head-controls-interval">
+      <button {{bind-attr class=":ember-calendar-head-day isDayActive:active"}} {{action "viewDay"}}>Day</button>
+      <button {{bind-attr class=":ember-calendar-head-week isWeekActive:active"}} {{action "viewWeek"}}>Week</button>
+    </div>
+  </div>
   <div class="ember-calendar-head-dates">
-    {{#each day in weekdays}}
-      <div class="ember-calendar-head-date ember-calendar-head-week-date">
-        <span class="name">{{format-date day 'ddd M/D'}}</span>
-      </div>
+    {{#each date in dates}}
+      {{calendar-head-date date=date isDayActive=isDayActive}}
     {{/each}}
   </div>
-  <button class="ember-calendar-head-next" {{action "next"}}>&raquo;</button>
 </div>
 <div class="ember-calendar-container">
   <div class="ember-calendar-body">
@@ -20,7 +27,7 @@
     </div>
     <div class="ember-calendar-days">
       {{#each day in schedule}}
-        {{calendar-day events=day}}
+        {{calendar-day events=day isDayActive=isDayActive}}
       {{/each}}
     </div>
   </div>

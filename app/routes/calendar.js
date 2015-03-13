@@ -6,10 +6,5 @@ export default Ember.Route.extend({
 
   model: function() {
     return this.get('eventsList').events();
-  },
-
-  setupController: function(controller, model) {
-    controller.set('model', model);
-    controller.set('startDate', moment().startOf('week').startOf('day'));
   }
 });

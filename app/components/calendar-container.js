@@ -4,6 +4,7 @@ import Ember from "ember";
 export default Ember.Component.extend({
   classNames: ["ember-calendar"],
   interval: 7,
+  startDate: null,
 
   dates: function() {
     var dates = [],
@@ -46,6 +47,19 @@ export default Ember.Component.extend({
     container.scrollTop(passed * dayHeight);
   }.on('didInsertElement'),
 
+  resetStartDate: function() {
+    var startDate;
+    if (this.get('interval') === 7) {
+      startDate = moment().startOf('week').startOf('day');
+    } else {
+      startDate = moment().startOf('day');
+    }
+    this.set('startDate', startDate);
+  }.observes('interval').on('init'),
+
+  isDayActive: Ember.computed.equal('interval', 1),
+  isWeekActive: Ember.computed.equal('interval', 7),
+
   actions: {
     previous: function() {
       this.set('startDate', this.get('startDate').clone().subtract(this.get('interval'), 'days').startOf('day'));
@@ -53,6 +67,18 @@ export default Ember.Component.extend({
 
     next: function() {
       this.set('startDate', this.get('startDate').clone().add(this.get('interval'), 'days').startOf('day'));
+    },
+
+    today: function() {
+      this.resetStartDate();
+    },
+
+    viewDay: function() {
+      this.set('interval', 1);
+    },
+
+    viewWeek: function() {
+      this.set('interval', 7);
     }
   }
 });
