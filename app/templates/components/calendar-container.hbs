@@ -19,6 +19,9 @@
       {{/each}}
     </div>
     <div class="ember-calendar-days">
+      {{#each day in schedule}}
+        {{calendar-day events=day}}
+      {{/each}}
     </div>
   </div>
 </div>
